@@ -19,7 +19,7 @@ import { Registry } from '@remix-project/remix-lib'
 const TopBarProfile = {
   name: 'topbar',
   displayName: 'Top Bar',
-  description: '',
+  description: 'Cardano IDE top bar and workspace controls.',
   version: packageJson.version,
   icon: '',
   location: 'none',

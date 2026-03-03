@@ -131,6 +131,10 @@ import TabProxy from './app/panels/tab-proxy.js'
 import BottomBarPanel from './app/components/bottom-bar-panel'
 import { TemplateExplorerModalPlugin } from './app/plugins/template-explorer-modal'
 import { TxRunnerPlugin } from './app/plugins/txRunnerPlugin'
+import { CardanoCompilerPlugin } from './app/plugins/cardano/cardano-compiler'
+import { CardanoDeployRunPlugin } from './app/plugins/cardano/cardano-deploy-run'
+import { CardanoUnitTestingPlugin } from './app/plugins/cardano/cardano-unit-testing'
+import { CARDANO_DEFAULT_PLUGIN_PACK } from './app/plugins/cardano/default-plugin-pack'
 
 // Tracking now handled by this.track() method using MatomoManager
 
@@ -632,6 +636,9 @@ class AppComponent {
     this.cloudWorkspacesPlugin = new CloudWorkspacesPlugin()
     this.invitationManager = new InvitationManagerPlugin()
     const feedbackPlugin = new FeedbackPlugin()
+    const cardanoCompiler = new CardanoCompilerPlugin()
+    const cardanoDeployRun = new CardanoDeployRunPlugin()
+    const cardanoUnitTesting = new CardanoUnitTestingPlugin()
 
     this.engine.register([
       compileTab as any,
@@ -649,7 +656,10 @@ class AppComponent {
       this.cloudWorkspacesPlugin,
       this.invitationManager,
       this.accountPlugin,
-      feedbackPlugin
+      feedbackPlugin,
+      cardanoCompiler,
+      cardanoDeployRun,
+      cardanoUnitTesting
     ])
     this.engine.register([templateExplorerModal, this.topBar])
 
@@ -737,8 +747,8 @@ class AppComponent {
     await this.appManager.activatePlugin(['feedback'])
     await this.appManager.activatePlugin(['settings'])
 
-    await this.appManager.activatePlugin(['walkthrough', 'storage', 'storageMonitor', 'search', 'compileAndRun', 'dgitApi', 'dgit'])
-    await this.appManager.activatePlugin(['solidity-script', 'remix-templates'])
+    await this.appManager.activatePlugin(['walkthrough', 'storage', 'storageMonitor', 'search', 'dgitApi', 'dgit'])
+    await this.appManager.activatePlugin(['remix-templates'])
 
     if (isElectron()) {
       await this.appManager.activatePlugin(['isogit', 'electronconfig', 'electronTemplates', 'xterm', 'ripgrep', 'appUpdater', 'slither', 'foundry', 'hardhat', 'circom', 'githubAuthHandler']) // 'remixAID'
@@ -755,7 +765,6 @@ class AppComponent {
         await this.appManager.registerContextMenuItems()
       }
     )
-    await this.appManager.activatePlugin(['solidity-script'])
     await this.appManager.activatePlugin(['filePanel'])
 
     // Set workspace after initial activation
@@ -776,9 +785,8 @@ class AppComponent {
             } catch (e) {
               console.log(e)
             }
-            if (this.params.code && (!this.params.activate || this.params.activate.split(',').includes('solidity'))) {
-              // if code is given in url we focus on solidity plugin
-              this.menuicons.select('solidity')
+            if (this.params.code && (!this.params.activate || this.params.activate.split(',').includes('cardanoCompiler'))) {
+              this.menuicons.select('cardanoCompiler')
             } else {
               // If plugins are loaded from the URL params, we focus on the last one.
               if (this.appManager.pluginLoader.current === 'queryParams' && this.workspace.length > 0) {
@@ -843,17 +851,13 @@ class AppComponent {
       localStorage.setItem('pinnedPlugin', '')
     })
 
-    // activate solidity plugin
-    this.appManager.activatePlugin(['solidity', 'udapp', 'deploy-libraries', 'link-libraries', 'openzeppelin-proxy', 'scriptRunnerBridge', 'resolutionIndex'])
+    await this.appManager.activatePlugin(CARDANO_DEFAULT_PLUGIN_PACK)
+    this.appManager.activatePlugin(['scriptRunnerBridge', 'resolutionIndex'])
 
     if (isElectron()){
       this.appManager.activatePlugin(['desktopHost'])
     }
     // await this.appManager.activatePlugin(['compilerArtefacts'])
-    await this.appManager.activatePlugin(['udappEnv'])
-    await this.appManager.activatePlugin(['udappDeploy'])
-    await this.appManager.activatePlugin(['udappDeployedContracts'])
-    await this.appManager.activatePlugin(['udappTransactions'])
   }
 }
 
