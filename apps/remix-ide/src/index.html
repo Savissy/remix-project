@@ -26,47 +26,47 @@
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	
 	<!-- SEO Meta Tags -->
-	<title>Remix IDE - Smart Contract Development</title>
-	<meta name="description" content="Remix IDE - Powerful web-based IDE for smart contract development, testing, and deployment. Build, debug, and deploy Solidity contracts with ease.">
-	<meta name="keywords" content="ethereum, solidity, smart contracts, blockchain, remix, ide, development, web3, dapp, testing, deployment">
-	<meta name="author" content="Remix Project">
+	<title>Cardano IDE - Smart Contract Development</title>
+	<meta name="description" content="Cardano IDE - Powerful web-based IDE for Cardano smart contract development, testing, and deployment. Build, test, and submit transactions with CIP-30 wallets.">
+	<meta name="keywords" content="cardano, aiken, plutus, helios, smart contracts, blockchain, ide, development, cip-30, testing, transaction">
+	<meta name="author" content="Cardano IDE">
 	<meta name="robots" content="index, follow">
 	
 	<!-- Canonical URL -->
-	<link rel="canonical" href="https://remix.ethereum.org/">
+	<link rel="canonical" href="https://cardano-ide.local/">
 	
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="https://remix.ethereum.org/">
-	<meta property="og:title" content="Remix IDE - Smart Contract Development">
+	<meta property="og:url" content="https://cardano-ide.local/">
+	<meta property="og:title" content="Cardano IDE - Smart Contract Development">
 	<meta property="og:description" content="Powerful web-based IDE for smart contract development, testing, and deployment. Build, debug, and deploy Solidity contracts with ease.">
-	<meta property="og:image" content="https://remix.ethereum.org/assets/img/remix-logo-blue.png">
-	<meta property="og:site_name" content="Remix IDE">
+	<meta property="og:image" content="https://cardano-ide.local/assets/img/remix-logo-blue.png">
+	<meta property="og:site_name" content="Cardano IDE">
 	
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="https://remix.ethereum.org/">
-	<meta property="twitter:title" content="Remix IDE - Smart Contract Development">
-	<meta property="twitter:description" content="Build, test, and deploy Solidity smart contracts with the most popular Web3 IDE">
-	<meta property="twitter:image" content="https://remix.ethereum.org/assets/img/remix-logo-blue.png">
+	<meta property="twitter:url" content="https://cardano-ide.local/">
+	<meta property="twitter:title" content="Cardano IDE - Smart Contract Development">
+	<meta property="twitter:description" content="Build, test, and submit Cardano smart contract transactions with a familiar IDE experience">
+	<meta property="twitter:image" content="https://cardano-ide.local/assets/img/remix-logo-blue.png">
 	
 	<!-- JSON-LD Structured Data -->
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		"name": "Remix IDE",
+		"name": "Cardano IDE",
 		"description": "Powerful web-based IDE for smart contract development, testing, and deployment",
-		"url": "https://remix.ethereum.org/",
+		"url": "https://cardano-ide.local/",
 		"applicationCategory": "DeveloperApplication",
 		"operatingSystem": "Web Browser",		
 		"creator": {
 			"@type": "Organization",
-			"name": "Remix Labs",
-			"url": "https://remix.live/"
+			"name": "Cardano IDE Contributors",
+			"url": "https://cardano.org/"
 		},
-		"keywords": ["ethereum", "solidity", "smart contracts", "blockchain", "web3", "ide"],
-		"image": "https://remix.ethereum.org/assets/img/remix-logo-blue.png"
+		"keywords": ["cardano", "aiken", "plutus", "helios", "smart contracts", "cip-30", "ide"],
+		"image": "https://cardano-ide.local/assets/img/remix-logo-blue.png"
 	}
 	</script>
 	
@@ -135,7 +135,7 @@
     const noMobileRedirect = window.location &&
       ((window.location.search && window.location.search.indexOf('nomobileredirect') !== -1) || (window.location.hash && window.location.hash.indexOf('nomobileredirect') !== -1))
 		if (!noMobileRedirect && isProbablyMobile()) {
-      window.location.replace("https://mobile.remix.live")
+      window.location.replace("https://mobile.cardano.org")
     }
 	</script>
 </head>
@@ -145,8 +145,8 @@
 	<!-- Minimal splash screen to show instantly before React mounts -->
 	<div id="pre-splash" aria-hidden="true">
 		<div class="inner">
-			<img src="assets/img/remix-logo-blue.png" alt="Remix logo" width="64" height="64" />
-			<div id="pre-splash-title" class="title">REMIX IDE</div>
+			<img src="assets/img/remix-logo-blue.png" alt="Cardano IDE logo" width="64" height="64" />
+			<div id="pre-splash-title" class="title">CARDANO IDE</div>
 			<div id="pre-splash-sub" class="sub">Loading…</div>
 			<div class="spinner" role="progressbar" aria-label="Loading"></div>
 		</div>
